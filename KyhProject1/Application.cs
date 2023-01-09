@@ -1,4 +1,7 @@
-﻿using System;
+﻿using KyhProject1.Controllers;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +13,8 @@ namespace KyhProject1
     {
         public void Run()
         {
+            var ProjectBuilder = new Builder();
+            ProjectBuilder.projectBuilder();
 
         }
     }

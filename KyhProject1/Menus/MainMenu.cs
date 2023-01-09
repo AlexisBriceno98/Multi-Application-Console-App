@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KyhProject1.Methods
+namespace KyhProject1.Menus
 {
-    public class ShapesMenu
+    public class MainMenu
     {
 
     }
