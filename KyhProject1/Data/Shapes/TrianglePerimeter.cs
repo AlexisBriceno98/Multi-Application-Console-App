@@ -6,22 +6,16 @@ using System.Threading.Tasks;
 
 namespace KyhProject1.Data.Shapes
 {
-    public class TrianglePerimeter
+    public class TrianglePerimeterAndArea
     {
+        public int Id { get; set; }
         public double Side1 { get; set; }
         public double Side2 { get; set; }
         public double Side3 { get; set; }
 
-        public TrianglePerimeter(double side1, double side2, double side3)
+        public double CalculateTrianglePerimeter(double side1, double side2, double side3)
         {
-            Side1 = side1;
-            Side2 = side2;
-            Side3 = side3;
-        }
-
-        public double CalculateTrianglePerimeter()
-        {
-            return Side1 + Side2 + Side3;
+            return side1 + side2 + side3;
         }
 
         public void TrianglePerimeterResult()
@@ -35,8 +29,8 @@ namespace KyhProject1.Data.Shapes
             Console.WriteLine("Enter the length of the third side of the triangle:");
             double Side3 = Convert.ToInt32(Console.ReadLine());
 
-            TrianglePerimeter triangle = new TrianglePerimeter(Side1, Side2, Side3);
-            double PerimeterResult = triangle.CalculateTrianglePerimeter();
+            TrianglePerimeterAndArea triangle = new TrianglePerimeterAndArea();
+            double PerimeterResult = triangle.CalculateTrianglePerimeter(Side1, Side2, Side3);
 
             Console.WriteLine($"The perimeter of the triangle is {PerimeterResult}");
         }

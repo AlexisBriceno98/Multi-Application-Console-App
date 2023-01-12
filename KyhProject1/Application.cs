@@ -16,20 +16,30 @@ namespace KyhProject1
         public void Run()
         {
             var ProjectBuilder = new Builder();
-            ProjectBuilder.projectBuilder();
+            var dbContext = ProjectBuilder.projectBuilder();
 
-            Console.WriteLine("Welcome to AP1");
-            Console.WriteLine("Please choose a program");
-            Console.WriteLine("1. Shapes, 2, Calculator, 3. Rock Paper Scissors game");
-            var programSelection = Convert.ToInt32(Console.ReadLine());
-            Console.Clear();
-
-            if (programSelection == 1)
+            while (true)
             {
-                var MenuforShapes = new ShapesMenu();
-                MenuforShapes.MenuForShapes();
-            }
 
+                Console.WriteLine("Welcome to AP1");
+                Console.WriteLine("--------------");
+                Console.WriteLine("Please choose a program");
+                Console.WriteLine("1. Shapes, 2. Calculator, 3. Rock Paper Scissors game, 0. Exit");
+                var programSelection = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+
+                if (programSelection == 0)
+                {
+                    break;
+                }
+
+                else if (programSelection == 1)
+                {
+                    var MenuforShapes = new ShapesMenu(dbContext);
+                    MenuforShapes.MenuForShapes();
+                }
+            }
+            Console.WriteLine("Thank you for using AP1, Bye!");
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using KyhProject1.Data.Shapes;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +13,12 @@ namespace KyhProject1.Controllers
 {
     public class ApplicationDbContext : DbContext
     {
+       public DbSet<RectanglePerimeterAndArea> RectanglePerimeters { get; set; }
 
+        public ApplicationDbContext()
+        {
+            
+        }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

@@ -10,7 +10,7 @@ namespace KyhProject1.Controllers
 {
     public class Builder
     {
-        public void projectBuilder()
+        public ApplicationDbContext projectBuilder()
         {
          var builder = new ConfigurationBuilder().AddJsonFile($"appsettings.json", true, true);
          var config = builder.Build();
@@ -23,7 +23,10 @@ namespace KyhProject1.Controllers
             {
                 var dataInitiaizer = new DataInitializer();
                 dataInitiaizer.MigratedAndSeed(dbContext);
+
+                return dbContext;
             }
+            
         }
     }
 }

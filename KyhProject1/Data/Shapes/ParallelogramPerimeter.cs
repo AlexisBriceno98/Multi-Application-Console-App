@@ -6,20 +6,14 @@ using System.Threading.Tasks;
 
 namespace KyhProject1.Data.Shapes
 {
-    public class ParallelogramPerimeter
+    public class ParallelogramPerimeterAndArea
     {
         public double Side1 { get; set; }
         public double Side2 { get; set; }
 
-        public ParallelogramPerimeter(double side1, double side2)
+        public double CalculateParallelogramPerimeter(double side1, double side2)
         {
-            Side1 = side1;
-            Side2 = side2;
-        }
-
-        public double CalculateParallelogramPerimeter()
-        {
-            return 2 * (Side1 + Side2);
+            return 2 * (side1 + side2);
         }
 
         public void ParallelogramPerimeterResult()
@@ -30,8 +24,8 @@ namespace KyhProject1.Data.Shapes
             Console.WriteLine("Enter the length of the second side of the parallelogram:");
             double Side2 = Convert.ToInt32(Console.ReadLine());
 
-            ParallelogramPerimeter Parallelogram = new ParallelogramPerimeter(Side1, Side2);
-            double PerimeterResult = Parallelogram.CalculateParallelogramPerimeter();
+            ParallelogramPerimeterAndArea Parallelogram = new ParallelogramPerimeterAndArea();
+            double PerimeterResult = Parallelogram.CalculateParallelogramPerimeter(Side1, Side2);
 
             Console.WriteLine($"The perimeter of the parallelogram is {PerimeterResult}");
         }
