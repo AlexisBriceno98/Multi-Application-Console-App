@@ -58,12 +58,13 @@ namespace KyhProject1.Menus
                           Result = calculator.num1 + calculator.num2,
                           
                         });
+                        _dbContext.SaveChanges();
                         break;
                     case 2:
                         Console.Write("Enter the first number: ");
-                        calculator.num1 = double.Parse(Console.ReadLine());
+                        calculator.num1 = Convert.ToDouble(Console.ReadLine());
                         Console.Write("Enter the second number: ");
-                        calculator.num2 = double.Parse(Console.ReadLine());
+                        calculator.num2 = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Subtract());
 
                         _dbContext.Calculators.Add(new Calculator
@@ -77,9 +78,9 @@ namespace KyhProject1.Menus
                         break;
                     case 3:
                         Console.Write("Enter the first number: ");
-                        calculator.num1 = double.Parse(Console.ReadLine());
+                        calculator.num1 = Convert.ToDouble(Console.ReadLine());
                         Console.Write("Enter the second number: ");
-                        calculator.num2 = double.Parse(Console.ReadLine());
+                        calculator.num2 = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Multiply());
 
                         _dbContext.Calculators.Add(new Calculator
@@ -93,9 +94,9 @@ namespace KyhProject1.Menus
                         break;
                     case 4:
                         Console.Write("Enter the first number: ");
-                        calculator.num1 = double.Parse(Console.ReadLine());
+                        calculator.num1 = Convert.ToDouble(Console.ReadLine());
                         Console.Write("Enter the second number: ");
-                        calculator.num2 = double.Parse(Console.ReadLine());
+                        calculator.num2 = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Divide());
 
                         _dbContext.Calculators.Add(new Calculator
@@ -109,7 +110,7 @@ namespace KyhProject1.Menus
                         break;
                     case 5:
                         Console.Write("Enter number: ");
-                        calculator.num1 = double.Parse(Console.ReadLine());
+                        calculator.num1 = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.SquareRoot());
 
                         _dbContext.Calculators.Add(new Calculator
@@ -123,9 +124,9 @@ namespace KyhProject1.Menus
                         break;
                     case 6:
                         Console.WriteLine("Enter the first number: ");
-                        calculator.num1 = double.Parse(Console.ReadLine());
+                        calculator.num1 = Convert.ToDouble(Console.ReadLine());
                         Console.Write("Enter the second number: ");
-                        calculator.num2 = double.Parse(Console.ReadLine());
+                        calculator.num2 = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Modulus);
 
                         _dbContext.Calculators.Add(new Calculator
@@ -151,8 +152,6 @@ namespace KyhProject1.Menus
                         Console.WriteLine("Invalid choice, please use only the numbers that are displayed.");
                         Console.ResetColor();
                         break;
-
-                        Console.WriteLine();
 
                 }
 

@@ -1,4 +1,5 @@
 ﻿using KyhProject1.Controllers;
+using KyhProject1.Data.RPS_Game;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,11 @@ namespace KyhProject1.Menus
                 {
                     var MenuForCalculator = new CalculatorMenu(dbContext);
                     MenuForCalculator.RunCalculator();
+                }
+                else if (programSelection == 3)
+                {
+                    var MenuForRpsGame = new RpsGame();
+                    MenuForRpsGame.StartRpsGame();
                 }
             }
             Console.WriteLine("Thank you for using AP1, Bye!");
