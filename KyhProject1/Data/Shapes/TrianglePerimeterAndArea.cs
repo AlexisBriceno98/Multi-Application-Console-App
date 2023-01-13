@@ -9,6 +9,8 @@ namespace KyhProject1.Data.Shapes
     public class TrianglePerimeterAndArea
     {
         public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string NameOfShape { get; set; }
         public double Side1 { get; set; }
         public double Side2 { get; set; }
         public double Side3 { get; set; }
@@ -33,6 +35,11 @@ namespace KyhProject1.Data.Shapes
             double PerimeterResult = triangle.CalculateTrianglePerimeter(Side1, Side2, Side3);
 
             Console.WriteLine($"The perimeter of the triangle is {PerimeterResult}");
+        }
+
+        public double CalculateTriangleArea(double side1, double side2, double side3)
+        {
+            return side1 + side2 + side3;
         }
     }
 }

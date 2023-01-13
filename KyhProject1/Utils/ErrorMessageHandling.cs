@@ -8,7 +8,7 @@ namespace KyhProject1.Utils
 {
     public class ErrorMessageHandling
     {
-        public int IValidInt(string stringToCheckIfValid)
+        public int IsValidInt(string stringToCheckIfValid)
         {
             int value;
             if (int.TryParse(stringToCheckIfValid, out value))

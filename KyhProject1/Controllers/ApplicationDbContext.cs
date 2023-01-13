@@ -1,4 +1,5 @@
-﻿using KyhProject1.Data.Shapes;
+﻿using KyhProject1.Data.Calculator;
+using KyhProject1.Data.Shapes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -9,11 +10,12 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KyhProject1.Controllers
+namespace KyhProject1
 {
     public class ApplicationDbContext : DbContext
     {
-       public DbSet<RectanglePerimeterAndArea> RectanglePerimeters { get; set; }
+       public DbSet<Shape> Shapes { get; set; }
+       public DbSet<Calculator> Calculators { get; set; }
 
         public ApplicationDbContext()
         {

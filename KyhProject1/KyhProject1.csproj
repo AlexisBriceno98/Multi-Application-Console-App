@@ -22,9 +22,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Calculator\" />
-    <Folder Include="Data\RPS Game\" />
-  </ItemGroup>
-
 </Project>

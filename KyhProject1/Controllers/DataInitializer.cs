@@ -19,14 +19,14 @@ namespace KyhProject1.Controllers
 
         public void SeedShapes(ApplicationDbContext dbContext)
         {
-            if (!dbContext.RectanglePerimeters.Any(c => c.Id == 1))
-            {
-                dbContext.RectanglePerimeters.Add(new RectanglePerimeterAndArea
-                {
-                    Date = DateTime.Now,
-                    NameOfShape = "Rectangle"
-                });
-            }
+            //if (!dbContext.RectanglePerimeterAndArea.Any(c => c.Id == 1))
+            //{
+            //    dbContext.RectanglePerimeters.Add(new RectanglePerimeterAndArea
+            //    {
+            //        Date = DateTime.Now,
+            //        NameOfShape = "Rectangle"
+            //    });
+            //}
         }
 
     }

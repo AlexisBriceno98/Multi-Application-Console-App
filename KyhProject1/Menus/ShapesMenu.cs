@@ -1,10 +1,12 @@
 ﻿using KyhProject1.Controllers;
 using KyhProject1.Data.Shapes;
+using KyhProject1.Utils;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.IO.Pipes;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -26,10 +28,11 @@ namespace KyhProject1.Menus
             var selection = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
             string answer = "";
+            var stringToCheckIfValid = "0";
 
-            while(true) 
+            while (true) 
             {
-
+                Console.Clear();
                 if (selection == 1)
                 {
                   
@@ -56,12 +59,33 @@ namespace KyhProject1.Menus
                                 break;
                                 
                         }
-                   
+                }
+                Console.WriteLine("Would you like to continue? 1. Yes, 2. No");
+                answer = Console.ReadLine();
+                if (answer == "1")
+                {
+                    continue;
+                }
+                else if (answer == "2")
+                {
+                    break;
+                }
+                else if (answer == "")
+                {
+                    var errorMessage = new ErrorMessageHandling();
+                    errorMessage.IsValidInt(stringToCheckIfValid);
+                    Console.WriteLine("Invalid number, please use 1. (Yes) or 2. (No)");
                 }
                 
+
             }
  
-            Console.WriteLine("Thank you for using our program, Bye!");
+            Console.WriteLine("Thank you for using our program, You will now return to Main Menu!");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Press any key to continue");
+            Console.ResetColor();
+            Console.ReadKey();
+            Console.Clear();
             
         }
     }
