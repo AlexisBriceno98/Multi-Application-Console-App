@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KyhProject1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230113100631_Added Calculator")]
-    partial class AddedCalculator
+    [Migration("20230113104725_Testing a new migraion")]
+    partial class Testinganewmigraion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,9 @@ namespace KyhProject1.Migrations
                     b.Property<string>("Operator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Result")
+                        .HasColumnType("float");
 
                     b.Property<double>("num1")
                         .HasColumnType("float");

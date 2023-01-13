@@ -5,13 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace KyhProject1.Migrations
 {
-    public partial class AddedCalculator : Migration
+    public partial class Testinganewmigraion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "RectanglePerimeters");
-
             migrationBuilder.CreateTable(
                 name: "Calculators",
                 columns: table => new
@@ -20,6 +17,7 @@ namespace KyhProject1.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Operator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Result = table.Column<double>(type: "float", nullable: false),
                     num1 = table.Column<double>(type: "float", nullable: false),
                     num2 = table.Column<double>(type: "float", nullable: false)
                 },
@@ -54,22 +52,6 @@ namespace KyhProject1.Migrations
 
             migrationBuilder.DropTable(
                 name: "Shapes");
-
-            migrationBuilder.CreateTable(
-                name: "RectanglePerimeters",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NameOfShape = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Side1 = table.Column<double>(type: "float", nullable: false),
-                    Side2 = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RectanglePerimeters", x => x.Id);
-                });
         }
     }
 }

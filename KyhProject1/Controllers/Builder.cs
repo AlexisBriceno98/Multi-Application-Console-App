@@ -23,10 +23,10 @@ namespace KyhProject1.Controllers
             {
                 var dataInitiaizer = new DataInitializer();
                 dataInitiaizer.MigratedAndSeed(dbContext);
-
-                return dbContext;
             }
-            
+            var dbContextReturned = new ApplicationDbContext(options.Options);
+            return dbContextReturned;
+
         }
     }
 }

@@ -13,11 +13,13 @@ namespace KyhProject1.Menus
 {
     public class CalculatorMenu
     {
+        private readonly ApplicationDbContext _dbContext;
+
         public CalculatorMenu(ApplicationDbContext dbContext)
         {
-
+            _dbContext = dbContext;
         }
-        public void RunCalculator(ApplicationDbContext dbContext)
+        public void RunCalculator()
         {
             var calculator = new Calculator();
             bool exit = true;
@@ -39,17 +41,21 @@ namespace KyhProject1.Menus
                 {
                     case 1:
                         Console.Write("Enter the first number: ");
-                        calculator.num1 = double.Parse(Console.ReadLine());
+                        calculator.num1 = Convert.ToDouble(Console.ReadLine());
                         Console.Write("Enter the second number: ");
-                        calculator.num2 = double.Parse(Console.ReadLine());
+                        calculator.num2 = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Add());
+                        calculator.Operator = "Addition";
+                        calculator.Date = DateTime.Now;
 
-                        dbContext.Calculators.Add(new Calculator
+
+                        _dbContext.Calculators.Add(new Calculator
                         {
-                          Operator = "Addition",
-                          Date = DateTime.Now,
+                          Operator = calculator.Operator,
+                          Date = calculator.Date,
                           num1 = calculator.num1,
                           num2 = calculator.num2,
+                          Result = calculator.num1 + calculator.num2,
                           
                         });
                         break;
@@ -60,7 +66,7 @@ namespace KyhProject1.Menus
                         calculator.num2 = double.Parse(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Subtract());
 
-                        dbContext.Calculators.Add(new Calculator
+                        _dbContext.Calculators.Add(new Calculator
                         {
                             Operator = "Subtraction",
                             Date = DateTime.Now,
@@ -76,7 +82,7 @@ namespace KyhProject1.Menus
                         calculator.num2 = double.Parse(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Multiply());
 
-                        dbContext.Calculators.Add(new Calculator
+                        _dbContext.Calculators.Add(new Calculator
                         {
                             Operator = "Multiplication",
                             Date = DateTime.Now,
@@ -92,7 +98,7 @@ namespace KyhProject1.Menus
                         calculator.num2 = double.Parse(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Divide());
 
-                        dbContext.Calculators.Add(new Calculator
+                        _dbContext.Calculators.Add(new Calculator
                         {
                             Operator = "Division",
                             Date = DateTime.Now,
@@ -106,7 +112,7 @@ namespace KyhProject1.Menus
                         calculator.num1 = double.Parse(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.SquareRoot());
 
-                        dbContext.Calculators.Add(new Calculator
+                        _dbContext.Calculators.Add(new Calculator
                         {
                             Operator = "Square Root",
                             Date = DateTime.Now,
@@ -122,7 +128,7 @@ namespace KyhProject1.Menus
                         calculator.num2 = double.Parse(Console.ReadLine());
                         Console.WriteLine("Result: " + calculator.Modulus);
 
-                        dbContext.Calculators.Add(new Calculator
+                        _dbContext.Calculators.Add(new Calculator
                         {
                             Operator = "Modulus",
                             Date = DateTime.Now,

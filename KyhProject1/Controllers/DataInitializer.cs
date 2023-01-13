@@ -1,4 +1,6 @@
-﻿using KyhProject1.Data.Shapes;
+﻿using KyhProject1.Data.Calculator;
+using KyhProject1.Data.Shapes;
+using KyhProject1.Menus;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ namespace KyhProject1.Controllers
         {
             dbContext.Database.Migrate();
             SeedShapes(dbContext);
+            SeedCalculators(dbContext);
             dbContext.SaveChanges();
         }
 
@@ -27,6 +30,20 @@ namespace KyhProject1.Controllers
             //        NameOfShape = "Rectangle"
             //    });
             //}
+        }
+        public void SeedCalculators(ApplicationDbContext dbContext)
+        {
+            if (!dbContext.Calculators.Any(c => c.Id == 1))
+            {
+                dbContext.Calculators.Add(new Calculator
+                {
+                    Date = DateTime.Now,
+                    Operator = "Addition",
+                    num1 = 1,
+                    num2 = 2,
+                    Result = 3,
+                });
+            }
         }
 
     }

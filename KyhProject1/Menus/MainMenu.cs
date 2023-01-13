@@ -37,7 +37,7 @@ namespace KyhProject1.Menus
                 else if(programSelection == 2)
                 {
                     var MenuForCalculator = new CalculatorMenu(dbContext);
-                    MenuForCalculator.RunCalculator(dbContext);
+                    MenuForCalculator.RunCalculator();
                 }
             }
             Console.WriteLine("Thank you for using AP1, Bye!");

@@ -11,6 +11,7 @@ namespace KyhProject1.Data.Calculator
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Operator { get; set; }
+        public double Result { get; set; }
         public double num1 { get; set; }
         public double num2 { get; set; }
 

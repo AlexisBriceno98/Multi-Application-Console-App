@@ -37,6 +37,9 @@ namespace KyhProject1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Result")
+                        .HasColumnType("float");
+
                     b.Property<double>("num1")
                         .HasColumnType("float");
 
