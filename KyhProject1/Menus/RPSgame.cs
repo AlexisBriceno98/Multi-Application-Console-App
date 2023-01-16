@@ -1,4 +1,5 @@
 ﻿using KyhProject1.Data.Calculator;
+using KyhProject1.Data.RPS_Game;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KyhProject1.Data.RPS_Game
+namespace KyhProject1.Menus
 {
     public class RpsGame
     {
@@ -22,7 +23,7 @@ namespace KyhProject1.Data.RPS_Game
         RPS rps = new RPS();
         public void StartRpsGame()
         {
-            
+
             bool choice = true;
             while (choice)
             {
@@ -54,123 +55,138 @@ namespace KyhProject1.Data.RPS_Game
             Console.Clear();
         }
 
-           public bool ValidateChoice(string choice)
+        public bool ValidateChoice(string choice)
+        {
+            if (choice == "1" || choice == "2" || choice == "3")
             {
-                if (choice == "1" || choice == "2" || choice == "3")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-
-            public string GetComputerChoice()
+            else
             {
-                Random rand = new Random();
-                int choice = rand.Next(1, 4);
-                if (choice == 1)
-                {
+                return false;
+            }
+        }
+
+        public string GetComputerChoice()
+        {
+            Random rand = new Random();
+            int choice = rand.Next(1, 4);
+            if (choice == 1)
+            {
                 Console.WriteLine("Computer chose Rock");
-                    return "Rock";
-                }
-                else if (choice == 2)
-                {
+                return "Rock";
+            }
+            else if (choice == 2)
+            {
                 Console.WriteLine("Computer chose Paper");
-                    return "Paper";
+                return "Paper";
+            }
+            else
+            {
+                Console.WriteLine("Compueter chose Scissors");
+                return "Scissors";
+            }
+        }
+
+        public void DetermineWinner()
+        {
+            
+            if (playerChoice == "1")
+            {
+                playerChoice = "Rock";
+                if (computerChoice == "Rock")
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("It's a tie");
+                    Console.ResetColor();
+                    rps.Rounds++;
+                }
+                else if (computerChoice == "Paper")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Computer wins");
+                    Console.ResetColor();
+                    rps.Losses++;
+                    rps.Rounds++;
+
                 }
                 else
                 {
-                Console.WriteLine("Compueter chose Scissors");
-                    return "Scissors";
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("You win");
+                    Console.ResetColor();
+                    rps.Wins++;
+                    rps.Rounds++;
                 }
+
             }
 
-            public void DetermineWinner()
+            else if (playerChoice == "2")         
             {
-
-                if (playerChoice == "1")
+                playerChoice = "Paper";
+                if (computerChoice == "Rock")
                 {
-                    if (computerChoice == "Rock")
-                    {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("It's a tie");
-                    Console.ResetColor();
-                    }
-                    else if (computerChoice == "Paper")
-                    {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Computer wins");
-                    Console.ResetColor();
-                    rps.Losses++;
-                    
-                    }
-                    else
-                    {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You win");
                     Console.ResetColor();
                     rps.Wins++;
-                    }
-                _dbContext.RPSGames.Add(new RPS
+                    rps.Rounds++;
+                }
+                else if (computerChoice == "Paper")
                 {
-                    Date = DateTime.Now,
-                    Wins = rps.Wins,
-                    Losses = rps.Losses,
-                    
-                });
-                _dbContext.SaveChanges();
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("It's a tie");
+                    Console.ResetColor();
+                    rps.Rounds++;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Computer wins");
+                    Console.ResetColor();
+                    rps.Losses++;
+                    rps.Rounds++;
+                }
             }
-
-                else if (playerChoice == "2")
+            
+            else if (playerChoice == "3")
+            {
+                playerChoice = "Scissors";
+                if (computerChoice == "Rock")
                 {
-                    if (computerChoice == "Rock")
-                    {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("You win");
-                    Console.ResetColor();
-                    rps.Wins++;
-                }
-                    else if (computerChoice == "Paper")
-                    {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("It's a tie");
-                    Console.ResetColor();
-                    }
-                    else
-                    {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Computer wins");
                     Console.ResetColor();
                     rps.Losses++;
-                    }
+                    rps.Rounds++;
                 }
-
-                else if (playerChoice == "3")
+                else if (computerChoice == "Paper")
                 {
-                    if (computerChoice == "Rock")
-                    {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Computer wins");
-                    Console.ResetColor();
-                    rps.Losses++;
-                    }
-                    else if (computerChoice == "Paper")
-                    {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You win");
                     Console.ResetColor();
                     rps.Wins++;
+                    rps.Rounds++;
                 }
-                    else
-                    {
+                else
+                {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("It's a tie");
                     Console.ResetColor();
-                    }
+                    rps.Rounds++;
                 }
-            rps.Rounds++;
+
             }
+            _dbContext.RPSGames.Add(new RPS
+            {
+                Date = DateTime.Now,
+                Wins = rps.Wins,
+                Losses = rps.Losses,
+                Rounds = rps.Rounds,
+                PlayerChoice = playerChoice,
+            });
+            _dbContext.SaveChanges();
+
+        }
     }
 }

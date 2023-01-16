@@ -51,6 +51,35 @@ namespace KyhProject1.Migrations
                     b.ToTable("Calculators");
                 });
 
+            modelBuilder.Entity("KyhProject1.Data.RPS_Game.RPS", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Losses")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PlayerChoice")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Rounds")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Wins")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RPSGames");
+                });
+
             modelBuilder.Entity("KyhProject1.Data.Shapes.Shape", b =>
                 {
                     b.Property<int>("Id")

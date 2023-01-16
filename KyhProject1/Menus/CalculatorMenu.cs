@@ -21,7 +21,7 @@ namespace KyhProject1.Menus
         }
         public void RunCalculator()
         {
-            var calculator = new Calculator();
+            Calculator calculator = new Calculator();
             bool exit = true;
             while (exit)
             {
@@ -48,7 +48,6 @@ namespace KyhProject1.Menus
                         calculator.Operator = "Addition";
                         calculator.Date = DateTime.Now;
 
-
                         _dbContext.Calculators.Add(new Calculator
                         {
                           Operator = calculator.Operator,
@@ -60,6 +59,7 @@ namespace KyhProject1.Menus
                         });
                         _dbContext.SaveChanges();
                         break;
+
                     case 2:
                         Console.Write("Enter the first number: ");
                         calculator.num1 = Convert.ToDouble(Console.ReadLine());
@@ -73,9 +73,11 @@ namespace KyhProject1.Menus
                             Date = DateTime.Now,
                             num1 = calculator.num1,
                             num2 = calculator.num2,
-
+                            Result = calculator.num1 - calculator.num2,
                         });
+                        _dbContext.SaveChanges();
                         break;
+
                     case 3:
                         Console.Write("Enter the first number: ");
                         calculator.num1 = Convert.ToDouble(Console.ReadLine());
@@ -89,9 +91,11 @@ namespace KyhProject1.Menus
                             Date = DateTime.Now,
                             num1 = calculator.num1,
                             num2 = calculator.num2,
-
+                            Result = calculator.num1 * calculator.num2,
                         });
+                        _dbContext.SaveChanges();
                         break;
+
                     case 4:
                         Console.Write("Enter the first number: ");
                         calculator.num1 = Convert.ToDouble(Console.ReadLine());
@@ -105,9 +109,11 @@ namespace KyhProject1.Menus
                             Date = DateTime.Now,
                             num1 = calculator.num1,
                             num2 = calculator.num2,
-
+                            Result = calculator.num1 / calculator.num2,
                         });
+                        _dbContext.SaveChanges();
                         break;
+
                     case 5:
                         Console.Write("Enter number: ");
                         calculator.num1 = Convert.ToDouble(Console.ReadLine());
@@ -119,15 +125,17 @@ namespace KyhProject1.Menus
                             Date = DateTime.Now,
                             num1 = calculator.num1,
                             num2 = calculator.num2,
-
+                            Result = Math.Sqrt(calculator.num1)
                         });
+                        _dbContext.SaveChanges();
                         break;
+
                     case 6:
                         Console.WriteLine("Enter the first number: ");
                         calculator.num1 = Convert.ToDouble(Console.ReadLine());
                         Console.Write("Enter the second number: ");
                         calculator.num2 = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("Result: " + calculator.Modulus);
+                        Console.WriteLine("Result: "+ calculator.Modulus());
 
                         _dbContext.Calculators.Add(new Calculator
                         {
@@ -135,9 +143,11 @@ namespace KyhProject1.Menus
                             Date = DateTime.Now,
                             num1 = calculator.num1,
                             num2 = calculator.num2,
-
+                            Result = calculator.num1 % calculator.num2,
                         });
+                        _dbContext.SaveChanges();
                         break;
+
                     case 7:
                         exit = false;
                         Console.WriteLine("You will now return to the Main Menu");

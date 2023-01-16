@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace KyhProject1.Migrations
 {
-    public partial class Testinganewmigraion : Migration
+    public partial class Testinganewmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,6 +24,23 @@ namespace KyhProject1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Calculators", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RPSGames",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlayerChoice = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Wins = table.Column<double>(type: "float", nullable: false),
+                    Losses = table.Column<double>(type: "float", nullable: false),
+                    Rounds = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RPSGames", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,6 +66,9 @@ namespace KyhProject1.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Calculators");
+
+            migrationBuilder.DropTable(
+                name: "RPSGames");
 
             migrationBuilder.DropTable(
                 name: "Shapes");

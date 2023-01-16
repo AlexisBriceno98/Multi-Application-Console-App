@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KyhProject1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230113104725_Testing a new migraion")]
-    partial class Testinganewmigraion
+    [Migration("20230116151632_Testing a new migration")]
+    partial class Testinganewmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,35 @@ namespace KyhProject1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Calculators");
+                });
+
+            modelBuilder.Entity("KyhProject1.Data.RPS_Game.RPS", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Losses")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PlayerChoice")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Rounds")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Wins")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RPSGames");
                 });
 
             modelBuilder.Entity("KyhProject1.Data.Shapes.Shape", b =>
