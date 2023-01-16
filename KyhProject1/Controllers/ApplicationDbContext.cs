@@ -1,4 +1,5 @@
 ﻿using KyhProject1.Data.Calculator;
+using KyhProject1.Data.RPS_Game;
 using KyhProject1.Data.Shapes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -16,6 +17,7 @@ namespace KyhProject1
     {
        public DbSet<Shape> Shapes { get; set; }
        public DbSet<Calculator> Calculators { get; set; }
+        public DbSet<RPS> RPSGames { get; set; }
 
         public ApplicationDbContext()
         {

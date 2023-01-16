@@ -1,4 +1,5 @@
 ﻿using KyhProject1.Data.Calculator;
+using KyhProject1.Data.RPS_Game;
 using KyhProject1.Data.Shapes;
 using KyhProject1.Menus;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,20 @@ namespace KyhProject1.Controllers
                     num1 = 1,
                     num2 = 2,
                     Result = 3,
+                });
+            }
+        }
+
+        public void SeedRPSGames(ApplicationDbContext dbContext)
+        {
+            if (!dbContext.RPSGames.Any(c => c.Id == 1))
+            {
+                dbContext.RPSGames.Add(new RPS
+                {
+                    Date = DateTime.Now,
+                    Wins = 0,
+                    Losses = 0,
+                    Rounds = 0,
                 });
             }
         }

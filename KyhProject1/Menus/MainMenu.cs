@@ -42,7 +42,7 @@ namespace KyhProject1.Menus
                 }
                 else if (programSelection == 3)
                 {
-                    var MenuForRpsGame = new RpsGame();
+                    var MenuForRpsGame = new RpsGame(dbContext);
                     MenuForRpsGame.StartRpsGame();
                 }
             }

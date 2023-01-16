@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KyhProject1.Data.Calculator;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,11 +10,19 @@ namespace KyhProject1.Data.RPS_Game
 {
     public class RpsGame
     {
+        private readonly ApplicationDbContext _dbContext;
+
+        public RpsGame(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public string playerChoice;
         public string computerChoice;
-
+        RPS rps = new RPS();
         public void StartRpsGame()
         {
+            
             bool choice = true;
             while (choice)
             {
@@ -42,6 +51,7 @@ namespace KyhProject1.Data.RPS_Game
                 Console.ReadKey();
                 Console.Clear();
             }
+            Console.Clear();
         }
 
            public bool ValidateChoice(string choice)
@@ -93,14 +103,25 @@ namespace KyhProject1.Data.RPS_Game
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Computer wins");
                     Console.ResetColor();
+                    rps.Losses++;
+                    
                     }
                     else
                     {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You win");
                     Console.ResetColor();
+                    rps.Wins++;
                     }
-                }
+                _dbContext.RPSGames.Add(new RPS
+                {
+                    Date = DateTime.Now,
+                    Wins = rps.Wins,
+                    Losses = rps.Losses,
+                    
+                });
+                _dbContext.SaveChanges();
+            }
 
                 else if (playerChoice == "2")
                 {
@@ -109,7 +130,8 @@ namespace KyhProject1.Data.RPS_Game
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You win");
                     Console.ResetColor();
-                    }
+                    rps.Wins++;
+                }
                     else if (computerChoice == "Paper")
                     {
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -121,6 +143,7 @@ namespace KyhProject1.Data.RPS_Game
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Computer wins");
                     Console.ResetColor();
+                    rps.Losses++;
                     }
                 }
 
@@ -131,13 +154,15 @@ namespace KyhProject1.Data.RPS_Game
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Computer wins");
                     Console.ResetColor();
+                    rps.Losses++;
                     }
                     else if (computerChoice == "Paper")
                     {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You win");
                     Console.ResetColor();
-                    }
+                    rps.Wins++;
+                }
                     else
                     {
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -145,6 +170,7 @@ namespace KyhProject1.Data.RPS_Game
                     Console.ResetColor();
                     }
                 }
+            rps.Rounds++;
             }
     }
 }
