@@ -41,6 +41,7 @@ namespace KyhProject1.Menus
                 }
                 if (!ValidateChoice(playerChoice))
                 {
+                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid choice. Please try again.");
                     Console.ResetColor();

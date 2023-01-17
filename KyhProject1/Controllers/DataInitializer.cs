@@ -3,6 +3,7 @@ using KyhProject1.Data.RPS_Game;
 using KyhProject1.Data.Shapes;
 using KyhProject1.Menus;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,19 +19,25 @@ namespace KyhProject1.Controllers
             dbContext.Database.Migrate();
             SeedShapes(dbContext);
             SeedCalculators(dbContext);
+            SeedRPSGames(dbContext);
             dbContext.SaveChanges();
         }
 
         public void SeedShapes(ApplicationDbContext dbContext)
         {
-            //if (!dbContext.RectanglePerimeterAndArea.Any(c => c.Id == 1))
-            //{
-            //    dbContext.RectanglePerimeters.Add(new RectanglePerimeterAndArea
-            //    {
-            //        Date = DateTime.Now,
-            //        NameOfShape = "Rectangle"
-            //    });
-            //}
+            if (!dbContext.Shapes.Any(c => c.Id == 1))
+            {
+                dbContext.Shapes.Add(new Shape
+                {
+                    Date = DateTime.Now,
+                    TypeOfShape = "Rectangle",
+                    Width = 0,
+                    Height = 0,
+                    Perimeter = 0,
+                    Area = 0,
+                    
+                });
+            }
         }
         public void SeedCalculators(ApplicationDbContext dbContext)
         {

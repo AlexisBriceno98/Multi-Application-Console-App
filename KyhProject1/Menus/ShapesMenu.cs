@@ -16,9 +16,11 @@ namespace KyhProject1.Menus
 {
     public class ShapesMenu
     {
+        private readonly ApplicationDbContext _dbContext;
+
         public ShapesMenu(ApplicationDbContext dbContext)
         {
-
+            _dbContext = dbContext;
         }
         public void MenuForShapes()
         {
@@ -44,8 +46,8 @@ namespace KyhProject1.Menus
                         switch (selectionOfShape)
                         {
                             case 1:
-                            var RectanglePerimeterCalculation = new RectanglePerimeterAndArea();
-                                RectanglePerimeterCalculation.RectanglePerimeterResult();
+                            var rectangleCalculation = new ShapeCreation(_dbContext);
+                                rectangleCalculation.Rectangle();
                                 break;
 
                             case 2:

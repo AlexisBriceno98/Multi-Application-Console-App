@@ -17,8 +17,6 @@ namespace KyhProject1
         {
             var MainMenu = new MainMenu();
             MainMenu.StartMainMenu();
-            
-           
         }
     }
 }

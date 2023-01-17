@@ -8,6 +8,7 @@ namespace KyhProject1.Utils
 {
     public class ErrorMessageHandling
     {
+
         public int IsValidInt(string stringToCheckIfValid)
         {
             int value;
