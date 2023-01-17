@@ -14,10 +14,11 @@ namespace KyhProject1.Data.Shapes
         public int Id { get; set; }
         [Required]
         public string TypeOfShape { get; set; }
-        [Required]
-        public double Width { get; set; }
-        [Required]
+        public double Side1 { get; set; }
+        public double Side2 { get; set; }
+        public double Side3 { get; set; }
         public double Height { get; set; }
+
         [Required]
         public double Area { get; set; }
         [Required]

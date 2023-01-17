@@ -31,11 +31,50 @@ namespace KyhProject1.Controllers
                 {
                     Date = DateTime.Now,
                     TypeOfShape = "Rectangle",
-                    Width = 0,
+                    Side1 = 0,
+                    Side2 = 0,
+                    Perimeter = 0,
+                    Area = 0,                 
+                });
+            }
+
+            if (!dbContext.Shapes.Any(c => c.Id == 2))
+            {
+                dbContext.Shapes.Add(new Shape
+                {
+                    Date = DateTime.Now,
+                    TypeOfShape = "Parallellogram",
+                    Side1 = 0,
+                    Side2 = 0,
+                    Perimeter = 0,
+                    Area = 0,
+                });
+            }
+
+            if (!dbContext.Shapes.Any(c => c.Id == 3))
+            {
+                dbContext.Shapes.Add(new Shape
+                {
+                    Date = DateTime.Now,
+                    TypeOfShape = "Triangle",
+                    Side1 = 0,
+                    Side2 = 0,
+                    Side3 = 0,
                     Height = 0,
                     Perimeter = 0,
                     Area = 0,
-                    
+                });
+            }
+            if (!dbContext.Shapes.Any(c => c.Id == 4))
+            {
+                dbContext.Shapes.Add(new Shape
+                {
+                    Date = DateTime.Now,
+                    TypeOfShape = "Rhombus",
+                    Side1 = 0,
+                    Side2 = 0,
+                    Perimeter = 0,
+                    Area = 0,
                 });
             }
         }

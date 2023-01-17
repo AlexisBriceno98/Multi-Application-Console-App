@@ -51,14 +51,18 @@ namespace KyhProject1.Menus
                                 break;
 
                             case 2:
-                                var ParallelogramPerimeterCalculation = new ParallelogramPerimeterAndArea();
-                                ParallelogramPerimeterCalculation.ParallelogramPerimeterResult();
+                                var parallellogramCalculation = new ShapeCreation(_dbContext);
+                                parallellogramCalculation.Parallellogram();
                                 break;
 
                             case 3:
-                                var TrianglePerimeterCalculation = new TrianglePerimeterAndArea();
-                                TrianglePerimeterCalculation.TrianglePerimeterResult();
+                                var triangleCalculation = new ShapeCreation(_dbContext);
+                                triangleCalculation.Triangle();
                                 break;
+                            case 4:
+                            var rhombusCalculation = new ShapeCreation(_dbContext);
+                            rhombusCalculation.Rhombus();
+                            break;
                                 
                         }
                 }

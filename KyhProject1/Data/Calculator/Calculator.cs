@@ -11,15 +11,15 @@ namespace KyhProject1.Data.Calculator
     {
         [Required]
         public int Id { get; set; }
-        [Required]
-        public DateTime Date { get; set; }
+        
         [Required]
         public string Operator { get; set; }
         [Required]
-        public double Result { get; set; }
         public double num1 { get; set; }
         public double num2 { get; set; }
-
+        public double Result { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
         public double Add()
         {
             return num1 + num2;
