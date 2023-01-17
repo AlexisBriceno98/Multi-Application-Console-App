@@ -106,7 +106,7 @@ namespace KyhProject1.Data.Shapes
 
             _dbContext.Shapes.Add(new Shape
             {
-                TypeOfShape = "Rectangle",
+                TypeOfShape = "Rhombus",
                 Date = DateTime.Now,
                 Side1 = side1,
                 Side2 = side2,

@@ -9,15 +9,16 @@ namespace KyhProject1.Utils
     public class ErrorMessageHandling
     {
 
-        public int IsValidInt(string stringToCheckIfValid)
+        public void ErrorHandling()
         {
-            int value;
-            if (int.TryParse(stringToCheckIfValid, out value))
-            {
-                if (value >= 1 && value <= 100000) return value;
-                return 0;
-            }
-            else return 0;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Please use a valid choice:");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Press any key to retry");
+            Console.ResetColor();
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

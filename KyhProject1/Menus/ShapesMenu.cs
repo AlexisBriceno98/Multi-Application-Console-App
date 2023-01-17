@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Diagnostics;
 using System.IO.Pipes;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -24,65 +25,68 @@ namespace KyhProject1.Menus
         }
         public void MenuForShapes()
         {
-            
-            Console.WriteLine("Welcome to Shapes, what do you want to calculate?");
-            Console.WriteLine("1. Perimeter of a Shape, 2. Area of a Shape");
-            var selection = Convert.ToInt32(Console.ReadLine());
-            Console.Clear();
-            string answer = "";
-            var stringToCheckIfValid = "0";
+            var errorMessage = new ErrorMessageHandling();
 
             while (true) 
             {
-                Console.Clear();
-                if (selection == 1)
+                try
                 {
-                  
+                    Console.WriteLine("Welcome to Shapes");
                     Console.WriteLine("Please choose the shape you want to calculate");
-                    Console.WriteLine("1. Rectangle,\n2. Parallellogram\n3. Triangle\n4. Romb");
+                    Console.WriteLine("1. Rectangle\n2. Parallellogram\n3. Triangle\n4. Romb");
+                    string answer = "";
+
                     var selectionOfShape = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
 
-                        switch (selectionOfShape)
-                        {
-                            case 1:
+                    switch (selectionOfShape)
+                    {
+                        case 1:
                             var rectangleCalculation = new ShapeCreation(_dbContext);
-                                rectangleCalculation.Rectangle();
-                                break;
+                            rectangleCalculation.Rectangle();
+                            break;
 
-                            case 2:
-                                var parallellogramCalculation = new ShapeCreation(_dbContext);
-                                parallellogramCalculation.Parallellogram();
-                                break;
+                        case 2:
+                            var parallellogramCalculation = new ShapeCreation(_dbContext);
+                            parallellogramCalculation.Parallellogram();
+                            break;
 
-                            case 3:
-                                var triangleCalculation = new ShapeCreation(_dbContext);
-                                triangleCalculation.Triangle();
-                                break;
-                            case 4:
+                        case 3:
+                            var triangleCalculation = new ShapeCreation(_dbContext);
+                            triangleCalculation.Triangle();
+                            break;
+
+                        case 4:
                             var rhombusCalculation = new ShapeCreation(_dbContext);
                             rhombusCalculation.Rhombus();
                             break;
-                                
-                        }
+                        default:
+                            errorMessage.ErrorHandling();
+                            continue;
+                    }
+
+
+                    Console.WriteLine("Would you like to continue? 1. Yes, 2. No");
+                    answer = Console.ReadLine();
+                    if (answer == "1")
+                    {
+                        Console.Clear();
+                        continue;
+                    }
+                    else if (answer == "2")
+                    {
+                        Console.Clear();
+                        break;
+                    }
+                    else
+                    {
+                        errorMessage.ErrorHandling();
+                    }
                 }
-                Console.WriteLine("Would you like to continue? 1. Yes, 2. No");
-                answer = Console.ReadLine();
-                if (answer == "1")
+                catch
                 {
-                    continue;
+                    errorMessage.ErrorHandling();
                 }
-                else if (answer == "2")
-                {
-                    break;
-                }
-                else if (answer == "")
-                {
-                    var errorMessage = new ErrorMessageHandling();
-                    errorMessage.IsValidInt(stringToCheckIfValid);
-                    Console.WriteLine("Invalid number, please use 1. (Yes) or 2. (No)");
-                }
-                
 
             }
  

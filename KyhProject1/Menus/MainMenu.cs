@@ -16,39 +16,59 @@ namespace KyhProject1.Menus
         {
             var ProjectBuilder = new Builder();
             var dbContext = ProjectBuilder.projectBuilder();
-
+            var errorMessage = new ErrorMessageHandling();
+            
             while (true)
             {
-
-                Console.WriteLine("Welcome to AP1");
-                Console.WriteLine("--------------");
-                Console.WriteLine("Please choose a program");
-                Console.WriteLine("1. Shapes, 2. Calculator, 3. Rock Paper Scissors game, 4. Exit");
-                var programSelection = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
-
-                if (programSelection == 4)
+                try
                 {
-                    break;
-                }  
+                    Console.WriteLine("Welcome to AP1");
+                    Console.WriteLine("--------------");
+                    Console.WriteLine("Please choose a program");
+                    Console.WriteLine("1. Shapes, 2. Calculator, 3. Rock Paper Scissors game, 4. Exit");
+                    var programSelection = Convert.ToInt32(Console.ReadLine());
+                    
 
-                else if (programSelection == 1)
-                {
-                    var MenuforShapes = new ShapesMenu(dbContext);
-                    MenuforShapes.MenuForShapes();
+                    if (programSelection == 4)
+                    {
+                        Console.Clear();
+                        break;
+                    }
+
+                    else if (programSelection == 1)
+                    {
+                        Console.Clear();
+                        var MenuforShapes = new ShapesMenu(dbContext);
+                        MenuforShapes.MenuForShapes();
+                    }
+                    else if (programSelection == 2)
+                    {
+                        Console.Clear();
+                        var MenuForCalculator = new CalculatorMenu(dbContext);
+                        MenuForCalculator.RunCalculator();
+                    }
+                    else if (programSelection == 3)
+                    {
+                        Console.Clear();
+                        var MenuForRpsGame = new RpsGame(dbContext);
+                        MenuForRpsGame.StartRpsGame();
+                    }
+                    else
+                    {
+                        errorMessage.ErrorHandling();
+                        continue;
+                    }
                 }
-                else if (programSelection == 2)
+                catch
                 {
-                    var MenuForCalculator = new CalculatorMenu(dbContext);
-                    MenuForCalculator.RunCalculator();
-                }
-                else if (programSelection == 3)
-                {
-                    var MenuForRpsGame = new RpsGame(dbContext);
-                    MenuForRpsGame.StartRpsGame();
+                    errorMessage.ErrorHandling();
+                    continue;
+                    
                 }
             }
+            Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Thank you for using AP1, Bye!");
+            Console.ResetColor();
         }
 
     }

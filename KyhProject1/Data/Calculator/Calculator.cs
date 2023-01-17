@@ -20,7 +20,7 @@ namespace KyhProject1.Data.Calculator
         public double Result { get; set; }
         [Required]
         public DateTime Date { get; set; }
-        public double Add()
+        public double Addition()
         {
             return num1 + num2;
         }
