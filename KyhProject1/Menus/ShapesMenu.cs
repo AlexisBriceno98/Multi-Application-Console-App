@@ -46,6 +46,9 @@ namespace KyhProject1.Menus
                         case 2:
                             shapeCrud.ShapeRead();
                             break;
+                        case 3:
+                            shapeCrud.ShapeUpdate();
+                            break;
                         case 4:
                             shapeCrud.ShapeDelete();
                             break;

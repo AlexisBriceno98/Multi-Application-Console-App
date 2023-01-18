@@ -25,7 +25,7 @@ namespace KyhProject1.Data.Shapes
         {
             string answer = "";
             bool start = true;
-            
+
             while (start)
             {
                 bool start1 = true;
@@ -91,7 +91,7 @@ namespace KyhProject1.Data.Shapes
                     {
                         _errorMessage.ErrorHandling();
                     }
-                }      
+                }
             }
         }
         public void ShapeRead()
@@ -110,45 +110,105 @@ namespace KyhProject1.Data.Shapes
         }
         public void ShapeUpdate()
         {
-
-        }
-
-        public void Update4sidedShape()
-        {
             while (true)
             {
-                Console.Clear();
-                Console.Write("Side 1: ");
-                var side1 = Convert.ToDouble(Console.ReadLine());
-                Console.Write("Side 2: ");
-                var side2 = Convert.ToDouble(Console.ReadLine());
-
-                var area = side1 * side2;
-                var perimiter = 2 * (side1 + side2);
-
-                Console.WriteLine($"\nArea: {area}\nPerimeter: {perimiter}\n\nDate: {DateTime.Now}\n");
-
-                _dbContext.Shapes.Add(new Shape
+                try
                 {
-                    //TypeOfShape = ,
-                    //Length = lengthInt,
-                    //Height = heightInt,
-                    //Area = area,
-                    //Perimeter = perimiter,
-                    //Date = DateTime.Now
-                });
-                _dbContext.SaveChanges();
+                    Console.Clear();
+                    Console.WriteLine("UPDATE");
+                    Console.WriteLine("--------\n");
+                    Console.WriteLine(".1 - Rectangle\n.2 - Parallellogram\n.3 - Rhombus\n.4 - Triangle");
+                    var userChoice = Convert.ToDouble(Console.ReadLine());
+                    var shape = "";
 
+                    if (userChoice >= 1 && userChoice <= 3)
+                    {
+                        if (userChoice == 1) shape = "Rectangle";
+                        if (userChoice == 2) shape = "Parallellogram";
+                        if (userChoice == 3) shape = "Rhombus";
+                        Update4sidedShape(shape);
+                    }
+                    else if (userChoice == 4)
+                    {
+                        shape = "Triangel";
+                        UpdateTriangleShape(shape);
+                    }
+                    break;
+                }
+                catch
+                {
+                    _errorMessage.ErrorHandling();
+                }
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Press any key to continue");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.ReadKey();
-                break;
             }
         }
 
-        public void UpdateTriangleShape()
+        public void Update4sidedShape(string shape)
+        {
+            var shapeToUpdate = new Shape();
+            while (true)
+            {
+                try
+                {
+                    ShapeRead();
+                    Console.WriteLine("\nChoose the ID of the shape you want to UPDATE");
+                    var choice = Convert.ToInt32(Console.ReadLine());
+                    shapeToUpdate = _dbContext.Shapes
+                        .Where(sR => sR.TypeOfShape == "Rectangle" || sR.TypeOfShape == "Parallellogram" || sR.TypeOfShape == "Rhombus")
+                        .FirstOrDefault(g => g.Id == choice);
+                    if (shapeToUpdate == null)
+                    {
+                        _errorMessage.ErrorHandling();
+                        continue;
+                    }
+                }
+                catch
+                {
+                    _errorMessage.ErrorHandling();
+                    continue;
+                }
+                break;
+            }
+            while (true)
+            {
+                try
+                {
+                    if (shapeToUpdate != null)
+                    {
+                        Console.Write("Side 1: ");
+                        var side1 = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Side 2: ");
+                        var side2 = Convert.ToDouble(Console.ReadLine());
+
+                        var area = side1 * side2;
+                        var perimiter = 2 * (side1 + side2);
+
+                        Console.WriteLine($"\nArea: {area}\nPerimeter: {perimiter}\n\nDate: {DateTime.Now}\n");
+
+                        shapeToUpdate.TypeOfShape = shape;
+                        shapeToUpdate.Side1 = side1;
+                        shapeToUpdate.Side2 = side2;
+                        shapeToUpdate.Area = area;
+                        shapeToUpdate.Perimeter = perimiter;
+                        shapeToUpdate.Date = DateTime.Now;
+                    }     
+                    _dbContext.SaveChanges();
+                }
+                catch
+                {
+                    _errorMessage.ErrorHandling();
+                    continue;
+                }
+                break;
+            }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Press any key to continue");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey();
+
+        }
+
+        public void UpdateTriangleShape(string shape)
         {
 
         }
