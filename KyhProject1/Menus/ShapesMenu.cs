@@ -26,61 +26,37 @@ namespace KyhProject1.Menus
         public void MenuForShapes()
         {
             var errorMessage = new ErrorMessageHandling();
+            var shapeCrud = new ShapeCrud(_dbContext);
+            bool startShapeLoop = true;
 
-            while (true) 
+            while (startShapeLoop)
             {
                 try
                 {
-                    Console.WriteLine("Welcome to Shapes");
-                    Console.WriteLine("Please choose the shape you want to calculate");
-                    Console.WriteLine("1. Rectangle\n2. Parallellogram\n3. Triangle\n4. Romb");
-                    string answer = "";
-
-                    var selectionOfShape = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
-
-                    switch (selectionOfShape)
+                    Console.WriteLine("Welcome to Shapes");
+                    Console.WriteLine("Please choose a function");
+                    Console.WriteLine("1. Start a shape calculation || 2. Read shapes || 3. Update a shape || 4. Delete a shape || 5. Exit to main menu ");
+                    var functionChoice = Convert.ToInt32(Console.ReadLine());
+                    switch (functionChoice)
                     {
                         case 1:
-                            var rectangleCalculation = new ShapeCreation(_dbContext);
-                            rectangleCalculation.Rectangle();
+                            shapeCrud.ShapeCreate();
                             break;
-
                         case 2:
-                            var parallellogramCalculation = new ShapeCreation(_dbContext);
-                            parallellogramCalculation.Parallellogram();
+                            shapeCrud.ShapeRead();
                             break;
-
-                        case 3:
-                            var triangleCalculation = new ShapeCreation(_dbContext);
-                            triangleCalculation.Triangle();
-                            break;
-
                         case 4:
-                            var rhombusCalculation = new ShapeCreation(_dbContext);
-                            rhombusCalculation.Rhombus();
+                            shapeCrud.ShapeDelete();
+                            break;
+                        case 5:
+                            startShapeLoop = false;
                             break;
                         default:
-                            errorMessage.ErrorHandling();
-                            continue;
-                    }
-
-
-                    Console.WriteLine("Would you like to continue? 1. Yes, 2. No");
-                    answer = Console.ReadLine();
-                    if (answer == "1")
-                    {
-                        Console.Clear();
-                        continue;
-                    }
-                    else if (answer == "2")
-                    {
-                        Console.Clear();
-                        break;
-                    }
-                    else
-                    {
-                        errorMessage.ErrorHandling();
+                            {
+                                errorMessage.ErrorHandling();
+                                continue;
+                            }
                     }
                 }
                 catch
@@ -89,14 +65,14 @@ namespace KyhProject1.Menus
                 }
 
             }
- 
+
             Console.WriteLine("Thank you for using our program, You will now return to Main Menu!");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Press any key to continue");
             Console.ResetColor();
             Console.ReadKey();
             Console.Clear();
-            
+
         }
     }
 }
