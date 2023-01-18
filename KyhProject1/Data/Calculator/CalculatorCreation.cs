@@ -51,7 +51,6 @@ namespace KyhProject1.Data.Calculator
                 }
                 continue;
             }
-           
         }
 
         public void Substraction()

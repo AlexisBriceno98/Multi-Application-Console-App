@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,7 +26,6 @@ namespace KyhProject1.Menus
             bool exit = true;
             var errorMessage = new ErrorMessageHandling();
             var returnToMenu = new ReturnToMainMenu();
-
             while (exit)
             {
                 try
@@ -41,78 +41,68 @@ namespace KyhProject1.Menus
                     Console.Write("Please Enter your choice: ");
 
                     int choice = Convert.ToInt32(Console.ReadLine());
-                    string answer = "";
-                    switch (choice)
-                    {
-                        case 1:
-                            Console.Clear();
-                            var startAddition = new CalculatorCreation(_dbContext);
-                            startAddition.Addition();
-                            break;
-
-                        case 2:
-                            Console.Clear();
-                            var startSubstraction = new CalculatorCreation(_dbContext);
-                            startSubstraction.Substraction();
-                            break;
-
-                        case 3:
-                            Console.Clear();
-                            var startMultiply = new CalculatorCreation(_dbContext);
-                            startMultiply.Multiplication();
-                            break;
-
-                        case 4:
-                            Console.Clear();
-                            var startDivision = new CalculatorCreation(_dbContext);
-                            startDivision.Division();
-                            break;
-
-                        case 5:
-                            Console.Clear();
-                            var startSquareRoot = new CalculatorCreation(_dbContext);
-                            startSquareRoot.squareRoot();
-                            break;
-
-                        case 6:
-                            Console.Clear();
-                            var startModulus = new CalculatorCreation(_dbContext);
-                            startModulus.Modulus();
-                            break;
-
-                        case 7:
-                            Console.Clear();
-                            exit = false;
-                            returnToMenu.returnToMainMenu();
-                            break;
-                        default:
-                            errorMessage.ErrorHandling();
-                            continue;
-                    }
-
-                    Console.WriteLine("Would you like to start a new calculation? 1.(Yes) 2.(No)");
-                    answer = Console.ReadLine();
-                    if (answer == "1")
+                    if(choice == 7)
                     {
                         Console.Clear();
-                        continue;
-                    }
-                    else if (answer == "2")
-                    {
-                        returnToMenu.returnToMainMenu();
                         break;
+                        returnToMenu.returnToMainMenu();
                     }
                     else
                     {
-                        errorMessage.ErrorHandling();
+                        ReadResponse(choice);
                     }
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Press ENTER to go back to Calculator Menu");
+                    Console.ResetColor();
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 catch
                 {
                     errorMessage.ErrorHandling();
                    
                 }
+            }             
+        }
 
+        public void ReadResponse(int choice)
+        {
+            var errorMessage = new ErrorMessageHandling();
+            Console.Clear();
+            switch (choice)
+            {
+                case 1:
+                    var startAddition = new CalculatorCreation(_dbContext);
+                    startAddition.Addition();
+                    break;
+
+                case 2:
+                    var startSubstraction = new CalculatorCreation(_dbContext);
+                    startSubstraction.Substraction();
+                    break;
+
+                case 3:
+                    var startMultiply = new CalculatorCreation(_dbContext);
+                    startMultiply.Multiplication();
+                    break;
+
+                case 4:
+                    var startDivision = new CalculatorCreation(_dbContext);
+                    startDivision.Division();
+                    break;
+
+                case 5:
+                    var startSquareRoot = new CalculatorCreation(_dbContext);
+                    startSquareRoot.squareRoot();
+                    break;
+
+                case 6:
+                    var startModulus = new CalculatorCreation(_dbContext);
+                    startModulus.Modulus();
+                    break;
+                default:
+                    errorMessage.ErrorHandling();
+                    break;
             }
         }
     }

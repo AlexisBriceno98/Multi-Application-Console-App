@@ -12,7 +12,7 @@ namespace KyhProject1.Utils
         {
             Console.WriteLine("You will now return to the Main Menu");
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Press any key to continue");
+            Console.WriteLine("Press ANY key to continue");
             Console.ReadKey();
             Console.ResetColor();
             Console.Clear();

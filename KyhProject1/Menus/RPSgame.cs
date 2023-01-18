@@ -91,7 +91,7 @@ namespace KyhProject1.Menus
 
         public void DetermineWinner()
         {
-            
+
             if (playerChoice == "1")
             {
                 playerChoice = "Rock";
@@ -122,7 +122,7 @@ namespace KyhProject1.Menus
 
             }
 
-            else if (playerChoice == "2")         
+            else if (playerChoice == "2")
             {
                 playerChoice = "Paper";
                 if (computerChoice == "Rock")
@@ -149,7 +149,7 @@ namespace KyhProject1.Menus
                     rps.Rounds++;
                 }
             }
-            
+
             else if (playerChoice == "3")
             {
                 playerChoice = "Scissors";
