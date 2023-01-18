@@ -20,33 +20,35 @@ namespace KyhProject1.Data.Calculator
         public double Result { get; set; }
         [Required]
         public DateTime Date { get; set; }
-        public double Addition()
+        public double Add(double num1, double num2)
         {
             return num1 + num2;
         }
 
-        public double Subtract()
+        public double Sub(double num1, double num2)
         {
             return num1 - num2;
         }
 
-        public double Multiply()
+        public double Mult(double num1, double num2)
         {
             return num1 * num2;
         }
 
-        public double Divide()
+        public double Div(double num1, double num2)
         {
             return num1 / num2;
         }
 
-        public double Modulus()
-        {
-            return num1 % num2;
-        }
-        public double SquareRoot()
+        public double SquareRt(double num1)
         {
             return Math.Sqrt(num1);
         }
+
+        public double Modu(double num1, double num2)
+        {
+            return num1 % num2;
+        }
+
     }
 }

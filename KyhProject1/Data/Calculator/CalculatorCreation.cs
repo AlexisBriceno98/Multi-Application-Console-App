@@ -29,8 +29,8 @@ namespace KyhProject1.Data.Calculator
                     calculator.num1 = Convert.ToDouble(Console.ReadLine());
                     Console.Write("Enter the second number: ");
                     calculator.num2 = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("Result: " + calculator.Addition());
-                    calculator.Operator = "Addition";
+                    Console.WriteLine($"Result: " + (calculator.num1 + calculator.num2));
+                    calculator.Operator = "+";
                     calculator.Date = DateTime.Now;
 
                     _dbContext.Calculators.Add(new Calculator
@@ -59,11 +59,11 @@ namespace KyhProject1.Data.Calculator
             calculator.num1 = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter the second number: ");
             calculator.num2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Result: " + calculator.Subtract());
+            Console.WriteLine("Result: " + (calculator.num1 - calculator.num2));
 
             _dbContext.Calculators.Add(new Calculator
             {
-                Operator = "Subtraction",
+                Operator = "-",
                 Date = DateTime.Now,
                 num1 = calculator.num1,
                 num2 = calculator.num2,
@@ -78,11 +78,11 @@ namespace KyhProject1.Data.Calculator
             calculator.num1 = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter the second number: ");
             calculator.num2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Result: " + calculator.Multiply());
+            Console.WriteLine("Result: " + (calculator.num1 * calculator.num2));
 
             _dbContext.Calculators.Add(new Calculator
             {
-                Operator = "Multiplication",
+                Operator = "*",
                 Date = DateTime.Now,
                 num1 = calculator.num1,
                 num2 = calculator.num2,
@@ -97,11 +97,11 @@ namespace KyhProject1.Data.Calculator
             calculator.num1 = Convert.ToDouble(Console.ReadLine());
             Console.Write("Enter the second number: ");
             calculator.num2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Result: " + calculator.Divide());
+            Console.WriteLine("Result: " + (calculator.num1 / calculator.num2));
 
             _dbContext.Calculators.Add(new Calculator
             {
-                Operator = "Division",
+                Operator = "/",
                 Date = DateTime.Now,
                 num1 = calculator.num1,
                 num2 = calculator.num2,
@@ -114,11 +114,11 @@ namespace KyhProject1.Data.Calculator
         {
             Console.Write("Enter number: ");
             calculator.num1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Result: " + calculator.SquareRoot());
+            Console.WriteLine("Result: " + Math.Sqrt(calculator.num1));
 
             _dbContext.Calculators.Add(new Calculator
             {
-                Operator = "Square Root",
+                Operator = "sqrt",
                 Date = DateTime.Now,
                 num1 = calculator.num1,
                 num2 = calculator.num2,
@@ -133,11 +133,11 @@ namespace KyhProject1.Data.Calculator
             calculator.num1 = int.Parse(Console.ReadLine());
             Console.Write("Enter the second number: ");
             calculator.num2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Result: " + calculator.Modulus());
+            Console.WriteLine("Result: " + (calculator.num1 % calculator.num2));
 
             _dbContext.Calculators.Add(new Calculator
             {
-                Operator = "Modulus",
+                Operator = "%",
                 Date = DateTime.Now,
                 num1 = calculator.num1,
                 num2 = calculator.num2,

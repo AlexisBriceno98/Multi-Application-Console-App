@@ -210,12 +210,70 @@ namespace KyhProject1.Data.Shapes
 
         public void UpdateTriangleShape(string shape)
         {
+            var shapeToUpdate = new Shape();
+            while (true)
+            {
+                try
+                {
+                    ShapeRead();
+                    Console.WriteLine("\nChoose the ID of the shape you want to UPDATE");
+                    var choice = Convert.ToInt32(Console.ReadLine());
+                    shapeToUpdate = _dbContext.Shapes
+                        .Where(sR => sR.TypeOfShape == "Triangle")
+                        .FirstOrDefault(g => g.Id == choice);
+                    if (shapeToUpdate == null)
+                    {
+                        _errorMessage.ErrorHandling();
+                        continue;
+                    }
+                }
+                catch
+                {
+                    _errorMessage.ErrorHandling();
+                    continue;
+                }
+                break;
+            }
+            while (true)
+            {
+                try
+                {
+                    if (shapeToUpdate != null)
+                    {
+                        Console.Write("Side 1: ");
+                        var side1 = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Side 2: ");
+                        var side2 = Convert.ToDouble(Console.ReadLine());
 
+                        var area = side1 * side2;
+                        var perimiter = 2 * (side1 + side2);
+
+                        Console.WriteLine($"\nArea: {area}\nPerimeter: {perimiter}\n\nDate: {DateTime.Now}\n");
+
+                        shapeToUpdate.TypeOfShape = shape;
+                        shapeToUpdate.Side1 = side1;
+                        shapeToUpdate.Side2 = side2;
+                        shapeToUpdate.Area = area;
+                        shapeToUpdate.Perimeter = perimiter;
+                        shapeToUpdate.Date = DateTime.Now;
+                    }
+                    _dbContext.SaveChanges();
+                }
+                catch
+                {
+                    _errorMessage.ErrorHandling();
+                    continue;
+                }
+                break;
+            }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Press any key to continue");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey();
         }
 
         public void ShapeDelete()
         {
-            var errorMessage = new ErrorMessageHandling();
             while (true)
             {
                 try
@@ -238,14 +296,14 @@ namespace KyhProject1.Data.Shapes
                     }
                     else if (shapeToDelete == null)
                     {
-                        errorMessage.ErrorHandling();
+                        _errorMessage.ErrorHandling();
                         continue;
                     }
                     break;
                 }
                 catch
                 {
-                    errorMessage.ErrorHandling();
+                    _errorMessage.ErrorHandling();
                     continue;
                 }
             }

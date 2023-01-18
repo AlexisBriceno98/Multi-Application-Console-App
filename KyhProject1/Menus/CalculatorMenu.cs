@@ -5,6 +5,7 @@ using KyhProject1.Utils;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
@@ -16,94 +17,61 @@ namespace KyhProject1.Menus
     public class CalculatorMenu
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly ErrorMessageHandling _errorMessage;
 
         public CalculatorMenu(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
+            _errorMessage = new ErrorMessageHandling();
         }
         public void RunCalculator()
         {
             bool exit = true;
-            var errorMessage = new ErrorMessageHandling();
             var returnToMenu = new ReturnToMainMenu();
+            var calcCrud = new CalculatorCrud(_dbContext);
             while (exit)
             {
                 try
                 {
-                    Console.WriteLine("Welcome to the Calculator, what do you want to calculate?");
-                    Console.WriteLine("1. Addition");
-                    Console.WriteLine("2. Subtraction");
-                    Console.WriteLine("3. Multiplication");
-                    Console.WriteLine("4. Division");
-                    Console.WriteLine("5. Square Root");
-                    Console.WriteLine("6. Modulus");
-                    Console.WriteLine("7. Exit");
-                    Console.Write("Please Enter your choice: ");
+                    Console.WriteLine("Welcome to the Calculator");
+                    Console.WriteLine("Please choose a function");
+                    Console.WriteLine("1. Start a calculation || 2. Read calculations || 3. Update a calculation || 4. Delete a calculation || 5. Exit to main menu ");
 
                     int choice = Convert.ToInt32(Console.ReadLine());
-                    if(choice == 7)
+                    switch (choice)
                     {
-                        Console.Clear();
-                        break;
-                        returnToMenu.returnToMainMenu();
+                        case 1:
+                            calcCrud.CalculatorCreate();
+                            break;
+                        case 2:
+                            calcCrud.CalculatorRead();
+                            break;
+                        case 3:
+                            calcCrud.CalculatorUpdate();
+                            break;
+                        case 4:
+                            calcCrud.CalculatorDelete();
+                            break;
+                        case 5:
+                            Console.Clear();
+                            returnToMenu.returnToMainMenu();
+                            exit = false;
+                            break;
                     }
-                    else
-                    {
-                        ReadResponse(choice);
-                    }
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Press ENTER to go back to Calculator Menu");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                    Console.Clear();
+
+                    //Console.ForegroundColor = ConsoleColor.Green;
+                    //Console.WriteLine("Press ENTER to go back to Calculator Menu");
+                    //Console.ResetColor();
+                    //Console.ReadKey();
+                    //Console.Clear();
                 }
                 catch
                 {
-                    errorMessage.ErrorHandling();
-                   
+                    _errorMessage.ErrorHandling();
+
                 }
-            }             
-        }
-
-        public void ReadResponse(int choice)
-        {
-            var errorMessage = new ErrorMessageHandling();
-            Console.Clear();
-            switch (choice)
-            {
-                case 1:
-                    var startAddition = new CalculatorCreation(_dbContext);
-                    startAddition.Addition();
-                    break;
-
-                case 2:
-                    var startSubstraction = new CalculatorCreation(_dbContext);
-                    startSubstraction.Substraction();
-                    break;
-
-                case 3:
-                    var startMultiply = new CalculatorCreation(_dbContext);
-                    startMultiply.Multiplication();
-                    break;
-
-                case 4:
-                    var startDivision = new CalculatorCreation(_dbContext);
-                    startDivision.Division();
-                    break;
-
-                case 5:
-                    var startSquareRoot = new CalculatorCreation(_dbContext);
-                    startSquareRoot.squareRoot();
-                    break;
-
-                case 6:
-                    var startModulus = new CalculatorCreation(_dbContext);
-                    startModulus.Modulus();
-                    break;
-                default:
-                    errorMessage.ErrorHandling();
-                    break;
             }
         }
     }
 }
+     
