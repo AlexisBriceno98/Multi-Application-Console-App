@@ -64,12 +64,6 @@ namespace KyhProject1.Menus
                                 continue;
                             }
                     }
-
-                    //Console.ForegroundColor = ConsoleColor.Green;
-                    //Console.WriteLine("Press ENTER to go back to Calculator Menu");
-                    //Console.ResetColor();
-                    //Console.ReadKey();
-                    //Console.Clear();
                 }
                 catch
                 {
