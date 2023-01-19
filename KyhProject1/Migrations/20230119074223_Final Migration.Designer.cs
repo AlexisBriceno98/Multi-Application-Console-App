@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KyhProject1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230117172834_Starting new migration")]
-    partial class Startingnewmigration
+    [Migration("20230119074223_Final Migration")]
+    partial class FinalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

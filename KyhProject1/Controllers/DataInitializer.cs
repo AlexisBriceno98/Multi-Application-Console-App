@@ -23,7 +23,7 @@ namespace KyhProject1.Controllers
 
         public void SeedShapes(ApplicationDbContext dbContext)
         {
-            if (!dbContext.Shapes.Any(c => c.Id == 1))
+            if (!dbContext.Shapes.Any(c => c.TypeOfShape == "Rectangle"))
             {
                 dbContext.Shapes.Add(new Shape
                 {
@@ -36,7 +36,7 @@ namespace KyhProject1.Controllers
                 });
             }
 
-            else if (!dbContext.Shapes.Any(c => c.Id == 2))
+            else if (!dbContext.Shapes.Any(c => c.TypeOfShape == "Parallellogram"))
             {
                 dbContext.Shapes.Add(new Shape
                 {
@@ -49,7 +49,7 @@ namespace KyhProject1.Controllers
                 });
             }
 
-            else if (!dbContext.Shapes.Any(c => c.Id == 3))
+            else if (!dbContext.Shapes.Any(c => c.TypeOfShape == "Triangle"))
             {
                 dbContext.Shapes.Add(new Shape
                 {
@@ -63,7 +63,7 @@ namespace KyhProject1.Controllers
                     Area = 0,
                 });
             }
-            else if (!dbContext.Shapes.Any(c => c.Id == 4))
+            else if (!dbContext.Shapes.Any(c => c.TypeOfShape == "Rhombus"))
             {
                 dbContext.Shapes.Add(new Shape
                 {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace KyhProject1.Migrations
 {
-    public partial class Startingnewmigration : Migration
+    public partial class FinalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
