@@ -75,6 +75,9 @@ namespace KyhProject1.Migrations
                     b.Property<double>("Wins")
                         .HasColumnType("float");
 
+                    b.Property<double>("winRate")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("RPSGames");
