@@ -96,7 +96,7 @@ namespace KyhProject1.Data.Shapes
         }
         public void ShapeRead()
         {
-
+            Console.Clear();
             foreach (var shape in _dbContext.Shapes)
             {
                 Console.WriteLine($"ID: {shape.Id}  | TypeOfShape: {shape.TypeOfShape}  | Side1: {shape.Side1}  | Side2: {shape.Side2}  | Side3: {shape.Side3}  | Height: {shape.Height}    " +
@@ -150,6 +150,7 @@ namespace KyhProject1.Data.Shapes
             {
                 try
                 {
+                    Console.Clear();
                     ShapeRead();
                     Console.WriteLine("\nChoose the ID of the shape you want to UPDATE");
                     var choice = Convert.ToInt32(Console.ReadLine());
@@ -175,9 +176,10 @@ namespace KyhProject1.Data.Shapes
                 {
                     if (shapeToUpdate != null)
                     {
-                        Console.Write("Side 1: ");
+                        Console.Clear();
+                        Console.Write("Please enter side 1: ");
                         var side1 = Convert.ToDouble(Console.ReadLine());
-                        Console.Write("Side 2: ");
+                        Console.Write("Please enter Side 2: ");
                         var side2 = Convert.ToDouble(Console.ReadLine());
 
                         var area = side1 * side2;
@@ -215,6 +217,7 @@ namespace KyhProject1.Data.Shapes
             {
                 try
                 {
+                    Console.Clear();
                     ShapeRead();
                     Console.WriteLine("\nChoose the ID of the shape you want to UPDATE");
                     var choice = Convert.ToInt32(Console.ReadLine());
@@ -240,19 +243,25 @@ namespace KyhProject1.Data.Shapes
                 {
                     if (shapeToUpdate != null)
                     {
-                        Console.Write("Side 1: ");
+                        Console.Write("Please enter side 1: ");
                         var side1 = Convert.ToDouble(Console.ReadLine());
-                        Console.Write("Side 2: ");
+                        Console.Write("Please enter side 2: ");
                         var side2 = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Please enter base: ");
+                        var side3 = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("Please enter height: ");
+                        var height = Convert.ToDouble(Console.ReadLine());
 
-                        var area = side1 * side2;
-                        var perimiter = 2 * (side1 + side2);
+                        var area = (side3 * height / 2);
+                        var perimiter = (side1 + side2 + side3);
 
                         Console.WriteLine($"\nArea: {area}\nPerimeter: {perimiter}\n\nDate: {DateTime.Now}\n");
 
                         shapeToUpdate.TypeOfShape = shape;
                         shapeToUpdate.Side1 = side1;
                         shapeToUpdate.Side2 = side2;
+                        shapeToUpdate.Side3 = side3;
+                        shapeToUpdate.Height = height;
                         shapeToUpdate.Area = area;
                         shapeToUpdate.Perimeter = perimiter;
                         shapeToUpdate.Date = DateTime.Now;
@@ -278,6 +287,7 @@ namespace KyhProject1.Data.Shapes
             {
                 try
                 {
+                    Console.Clear();
                     ShapeRead();
                     Console.WriteLine("\nChoose the ID of the shape you want to DELETE");
                     var choice = Convert.ToInt32(Console.ReadLine());

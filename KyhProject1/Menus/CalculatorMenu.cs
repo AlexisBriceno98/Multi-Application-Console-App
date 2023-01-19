@@ -45,6 +45,7 @@ namespace KyhProject1.Menus
                             break;
                         case 2:
                             calcCrud.CalculatorRead();
+                            Console.Clear();
                             break;
                         case 3:
                             calcCrud.CalculatorUpdate();
@@ -57,6 +58,11 @@ namespace KyhProject1.Menus
                             returnToMenu.returnToMainMenu();
                             exit = false;
                             break;
+                        default:
+                            {
+                                _errorMessage.ErrorHandling();
+                                continue;
+                            }
                     }
 
                     //Console.ForegroundColor = ConsoleColor.Green;

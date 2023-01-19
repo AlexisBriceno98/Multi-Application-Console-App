@@ -24,10 +24,14 @@ namespace KyhProject1.Data.Calculator
         public void CalculatorCreate()
         {
             bool start = true;
+            var startCalculation = new CalculatorCreation(_dbContext);
+            var answer = "";
             while (start)
             {
+                bool start1 = true;
                 try
                 {
+                    Console.Clear();
                     Console.WriteLine("Please choose an arithmetic operation");
                     Console.WriteLine("--------------------");
                     Console.WriteLine("1. Addition");
@@ -39,42 +43,45 @@ namespace KyhProject1.Data.Calculator
                     Console.WriteLine("7. Exit");
                     Console.Write("Please Enter your choice: ");
                     var userChoice = Convert.ToInt32(Console.ReadLine());
+
                     Console.Clear();
 
                     switch (userChoice)
                     {
                         case 1:
-                            var startAddition = new CalculatorCreation(_dbContext);
-                            startAddition.Addition();
+                            Console.Clear();                    
+                            startCalculation.Addition();
                             break;
 
                         case 2:
-                            var startSubstraction = new CalculatorCreation(_dbContext);
-                            startSubstraction.Substraction();
+                            Console.Clear();
+                            startCalculation.Substraction();
                             break;
 
                         case 3:
-                            var startMultiply = new CalculatorCreation(_dbContext);
-                            startMultiply.Multiplication();
+                            Console.Clear();
+                            startCalculation.Multiplication();
                             break;
 
                         case 4:
-                            var startDivision = new CalculatorCreation(_dbContext);
-                            startDivision.Division();
+                            Console.Clear();
+                            startCalculation.Division();
                             break;
 
                         case 5:
-                            var startSquareRoot = new CalculatorCreation(_dbContext);
-                            startSquareRoot.squareRoot();
+                            Console.Clear();
+                            startCalculation.squareRoot();
                             break;
 
                         case 6:
-                            var startModulus = new CalculatorCreation(_dbContext);
-                            startModulus.Modulus();
+                            Console.Clear();
+                            startCalculation.Modulus();
                             break;
                         case 7:
+                            Console.Clear();
                             var returnToMainMenu = new ReturnToMainMenu();
                             returnToMainMenu.returnToMainMenu();
+                            start1 = false;
                             start = false;
                             break;
                         default:
@@ -89,11 +96,41 @@ namespace KyhProject1.Data.Calculator
                     _errorMessage.ErrorHandling();
                     continue;
                 }
+                while (start1)
+                {
+                    Console.WriteLine("Would you like to continue? 1. Yes, 2. No");
+                    answer = Console.ReadLine();
+                    if (answer == "1")
+                    {
+                        Console.Clear();
+                        start1 = false;
+                        start = true;
+
+                    }
+                    else if (answer == "2")
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("You will now return to the Calculator Menu");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Press ANY key to continue");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        Console.Clear();
+                        start1 = false;
+                        start = false;
+                    }
+                    else
+                    {
+                        _errorMessage.ErrorHandling();
+                    }
+                }
             }
 
         }
         public void CalculatorRead()
         {
+            Console.Clear();
             foreach (var calc in _dbContext.Calculators)
             {
                 Console.WriteLine($"ID: {calc.Id}  | Operator: {calc.Operator}  | Num1: {calc.num1}  | Num2: {calc.num2}  | Result: {calc.Result}  | Height: {calc.Date}");
@@ -103,18 +140,21 @@ namespace KyhProject1.Data.Calculator
             Console.WriteLine("Press any key to continue");
             Console.ResetColor();
             Console.ReadKey();
+
         }
 
         public void CalculatorUpdate()
         {
-            while (true)
+            bool start = true;
+            while (start)
             {
                 try
                 {
-                    Console.Clear();
+
                     CalculatorRead();
                     Console.WriteLine("\nChoose the ID of the calculation that you want to UPDATE");
                     var choice = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
                     var calcToUpdate = _dbContext.Calculators
                         .FirstOrDefault(g => g.Id == choice);
                     Console.WriteLine("\nAcceptable operators:  +  |  -  |  *  |  /  |  %  |  sqrt");
@@ -143,7 +183,18 @@ namespace KyhProject1.Data.Calculator
                     calcToUpdate.num1 = num1;
                     calcToUpdate.num2 = num2;
                     calcToUpdate.Result = calculation;
+                    calcToUpdate.Date = DateTime.Now;
+                    _dbContext.SaveChanges();
 
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nUpdate of calculation succeeded\n");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Press ANY key to continue");
+                    Console.ResetColor();
+                    Console.ReadKey();
+                    Console.Clear();
+                    start = false;
                 }
                 catch
                 {
@@ -158,6 +209,7 @@ namespace KyhProject1.Data.Calculator
             {
                 try
                 {
+                    Console.Clear();
                     CalculatorRead();
                     Console.WriteLine("\nChoose the ID of the shape you want to DELETE");
                     var choice = Convert.ToInt32(Console.ReadLine());
@@ -173,6 +225,7 @@ namespace KyhProject1.Data.Calculator
                         Console.WriteLine("Press any key to continue");
                         Console.ResetColor();
                         Console.ReadKey();
+                        Console.Clear();
                     }
                     else if (calcToDelete == null)
                     {
