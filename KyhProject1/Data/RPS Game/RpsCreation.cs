@@ -43,7 +43,7 @@ namespace KyhProject1.Data.RPS_Game
 
         public void Scissors()
         {
-            GetComputerChoice();
+            computerChoice = GetComputerChoice();
             playerChoice = "Scissors";
             if (computerChoice == "Rock")
             {
@@ -80,7 +80,7 @@ namespace KyhProject1.Data.RPS_Game
         }
         public void Paper()
         {
-            GetComputerChoice();
+            computerChoice = GetComputerChoice();
             playerChoice = "Paper";
             if (computerChoice == "Rock")
             {
@@ -118,7 +118,7 @@ namespace KyhProject1.Data.RPS_Game
    
         public void Rock()
         {
-            GetComputerChoice();
+            computerChoice = GetComputerChoice();
             playerChoice = "Rock";
             if (computerChoice == "Rock")
             {
