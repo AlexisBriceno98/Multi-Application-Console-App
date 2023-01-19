@@ -36,6 +36,7 @@ namespace KyhProject1.Migrations
                     Wins = table.Column<double>(type: "float", nullable: false),
                     Losses = table.Column<double>(type: "float", nullable: false),
                     Rounds = table.Column<double>(type: "float", nullable: false),
+                    winRate = table.Column<double>(type: "float", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

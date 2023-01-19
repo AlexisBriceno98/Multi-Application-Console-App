@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KyhProject1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230119074223_Final Migration")]
+    [Migration("20230119175125_Final Migration")]
     partial class FinalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,6 +75,9 @@ namespace KyhProject1.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("Wins")
+                        .HasColumnType("float");
+
+                    b.Property<double>("winRate")
                         .HasColumnType("float");
 
                     b.HasKey("Id");

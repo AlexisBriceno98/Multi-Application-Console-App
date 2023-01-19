@@ -19,6 +19,10 @@ namespace KyhProject1.Data.RPS_Game
         public string playerChoice;
         public string computerChoice;
         RPS rps = new RPS();
+        public double WinRate()
+        {
+            return (double)rps.Wins / rps.Rounds * 100;
+        }
 
         public string GetComputerChoice()
         {
@@ -75,6 +79,8 @@ namespace KyhProject1.Data.RPS_Game
                 Losses = rps.Losses,
                 Rounds = rps.Rounds,
                 PlayerChoice = playerChoice,
+                winRate = WinRate()
+
             });
             _dbContext.SaveChanges();
         }
@@ -112,6 +118,7 @@ namespace KyhProject1.Data.RPS_Game
                 Losses = rps.Losses,
                 Rounds = rps.Rounds,
                 PlayerChoice = playerChoice,
+                winRate = WinRate()
             });
             _dbContext.SaveChanges();
         }
@@ -152,6 +159,7 @@ namespace KyhProject1.Data.RPS_Game
                 Losses = rps.Losses,
                 Rounds = rps.Rounds,
                 PlayerChoice = playerChoice,
+                winRate = WinRate()
             });
             _dbContext.SaveChanges();
         }

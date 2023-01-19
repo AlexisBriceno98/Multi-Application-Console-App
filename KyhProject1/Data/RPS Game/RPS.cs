@@ -16,16 +16,7 @@ namespace KyhProject1.Data.RPS_Game
         public double Losses { get; set; }
         public double Rounds { get; set; }
         [Required]
+        public double winRate { get; set; }
         public DateTime Date { get; set; }
-
-        public double WinRate
-        {
-            get { return Wins / Rounds; }
-        }
-
-        public double LossRate
-        {
-            get { return Losses / Rounds; }
-        }
     }
 }
